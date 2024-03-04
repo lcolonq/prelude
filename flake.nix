@@ -14,7 +14,6 @@
       haskellPackages = pkgs.haskell.packages.ghc94.override {
         overrides = haskellOverrides;
       };
-      lcolonq-prelude = haskellPackages.lcolonq-prelude;
     in {
       devShells.x86_64-linux.default = haskellPackages.shellFor {
         packages = hspkgs: with hspkgs; [
@@ -25,9 +24,6 @@
           # haskellPackages.haskell-language-server
         ];
       };
-      packages.x86_64-linux = {
-        default = haskellPackages.lcolonq-prelude;
-        inherit lcolonq-prelude;
-      };
+      overlays.default = haskellOverrides;
     };
 }
